@@ -1,23 +1,12 @@
 const Koa = require('koa')
-const path = require('path')
-const bodyparser = require('koa-bodyparser')
-const nunjuncks = require('koa-nunjucks-2')
-const staticFiles = require('koa-static')
 
 const app = new Koa()
 const router = require('./router')
 
-app.use(staticFiles(path.resolve(__dirname, './public')))
+const middleware = require('./middleware')
 
-app.use(nunjuncks({
-    ext: 'html',
-    path: path.join(__dirname, 'views'),
-    nunjucksConfig: {
-        trimBlocks: true
-    }
-}))
+middleware(app)
 
-app.use(bodyparser())
 router(app)
 
 app.listen(3000, () => {
