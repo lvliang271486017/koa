@@ -1,7 +1,7 @@
 module.exports = {
   register: async (name, password) => {
     let data;
-    if (name === 'ikcamp' && password === '123456') {
+    if (name === 'test' && password === '123456') {
       data = data = {
         status: 0,
         data: {
