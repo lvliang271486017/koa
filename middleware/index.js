@@ -9,7 +9,9 @@ const miLog = require('./mi-log')
 const miHttpError = require('./mi-http-error')
 
 module.exports = (app) => {
-    app.use(miHttpError())
+    app.use(miHttpError({
+        errorPageFolder: path.resolve(__dirname, '../errorPage')
+    }))
     app.use(miLog({
         appLogLevel: 'debug',  // 指定记录的日志级别
         dir: 'logs',		// 指定日志存放的目录名
